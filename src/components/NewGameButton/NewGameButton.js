@@ -7,13 +7,15 @@ const NewGameButton = (props) => {
         textAlign: 'center'
     }
     const buttonStyle = {
-        backgroundColor: '#4CAF50', /* Green */
+        backgroundColor: 'black', 
         borderRadius:'2em',
         border:'none',
         padding: '12px 20px',
         textAlign: 'center',
         display: 'inline-block',
         fontSize: '16px',
+        fontFamily: 'cursive',
+        color:'white'
     }
     return (
         <div style={divStyle}>

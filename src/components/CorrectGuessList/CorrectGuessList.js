@@ -19,7 +19,7 @@ const CorrectGuessList = (props) => {
     const stateletters = props.currentState.split('');
     
     const stateletterList = stateletters.map((letter,index) => {
-        if (props.lose) {
+        if (props.lose|| props.win) {
             return <li key={index} style={alphabetStyle}><u>{letter}</u></li>
         } else {
             if (letter === ' ') {
@@ -35,13 +35,12 @@ const CorrectGuessList = (props) => {
         }
     });
 
-    const displayText = (!props.lose) ? 'Guess the US State' : 'Correct Answer';
+    const displayText = (!props.lose && !props.win) ? 'Guess the US State' : 'Correct Answer';
     return (
         <div style={divStyle}>
             <h3 style={{fontFamily:'cursive'}}>{displayText}</h3>
             {stateletterList}
     </div>
-        
 );
 
 }

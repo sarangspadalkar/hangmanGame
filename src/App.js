@@ -13,10 +13,11 @@ class App extends Component {
     currentState: '',
     lose: false,
     userGuesses: [],
+    userGuessCnt: 0,
     wrongGuessCnt: 0,
     currentDiagram: 0,
     userCorrectGuesses: '',
-    win:false
+    win: false
   };
   constructor(props) {
     super(props);
@@ -25,7 +26,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.userGuesses.length !== this.state.userGuesses.length){
+    if (prevState.userCorrectGuesses !== this.state.userCorrectGuesses) {
       this.setState({
         win: this.isWin()
       });
@@ -36,11 +37,12 @@ class App extends Component {
     let rand = Math.floor(Math.random() * stateList.length);
     this.setState({
       currentState: stateList[rand]
-    },()=>{console.log('The Correct State: '+this.state.currentState);});
+    }, () => { console.log('The Correct State: ' + this.state.currentState); });
   }
 
   onTextClick = (letter) => {
-    
+    this.setState({ userGuessCnt: this.state.userGuessCnt + 1 });
+
     if (!this.state.userGuesses.includes(letter)) {
       this.setState({ userGuesses: [...this.state.userGuesses, letter] });
     }
@@ -85,8 +87,14 @@ class App extends Component {
             <Hangman
               currentDiagram={this.state.currentDiagram}
               lose={this.state.lose}
-              win={true}
+              win={this.state.win}
             ></Hangman>
+            <CorrectGuessList
+              currentState={this.state.currentState}
+              guess={this.state.userGuesses}
+              lose={this.state.lose}
+              win={this.state.win}
+            ></CorrectGuessList>
             <NewGameButton clicked={() => this.newGame()}></NewGameButton>
           </div> :
           <div>
@@ -100,6 +108,7 @@ class App extends Component {
               currentState={this.state.currentState}
               guess={this.state.userGuesses}
               lose={this.state.lose}
+              win={this.state.win}
             ></CorrectGuessList>
             <br></br>
             <TextEntry
@@ -111,12 +120,13 @@ class App extends Component {
           <Hangman
             currentDiagram={this.state.currentDiagram}
             lose={this.state.lose}
-            win={false}
+            win={this.state.win}
           ></Hangman>
           <CorrectGuessList
             currentState={this.state.currentState}
             guess={this.state.userGuesses}
             lose={this.state.lose}
+            win={this.state.win}
           ></CorrectGuessList>
           <NewGameButton clicked={() => this.newGame()}></NewGameButton>
         </div>
