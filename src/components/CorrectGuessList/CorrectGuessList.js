@@ -7,7 +7,7 @@ const CorrectGuessList = (props) => {
         textTransform: 'uppercase',
         fontSize: '22px',
         display: 'inline-block',
-        fontFamily: 'Creepster',
+        fontFamily:'cursive',
         fontStyle: 'italic',
     };
     const divStyle = {
@@ -38,7 +38,7 @@ const CorrectGuessList = (props) => {
     const displayText = (!props.lose) ? 'Guess the US State' : 'Correct Answer';
     return (
         <div style={divStyle}>
-            <h3>{displayText}</h3>
+            <h3 style={{fontFamily:'cursive'}}>{displayText}</h3>
             {stateletterList}
     </div>
         

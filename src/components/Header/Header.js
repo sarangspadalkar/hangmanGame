@@ -5,6 +5,7 @@ const Header = () => {
         padding: '20px',
         textAlign: 'center',
         color: 'black',
+        fontFamily:'cursive',
         fontSize: '50px',
         margin: 0
     }

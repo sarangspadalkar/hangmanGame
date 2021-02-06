@@ -8,7 +8,7 @@ const TextEntry = (props) => {
         textTransform: 'uppercase',
         fontSize: '22px',
         display: 'inline-block',
-        fontFamily: 'Creepster',
+        fontFamily: 'cursive',
         fontStyle: 'italic',
     };
     const disabledAlphabetStyle = {
