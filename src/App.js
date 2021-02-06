@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.userCorrectGuesses !== this.state.userCorrectGuesses){
+    if (prevState.userGuesses.length !== this.state.userGuesses.length){
       this.setState({
         win: this.isWin()
       });
@@ -36,7 +36,7 @@ class App extends Component {
     let rand = Math.floor(Math.random() * stateList.length);
     this.setState({
       currentState: stateList[rand]
-    });
+    },()=>{console.log('The Correct State: '+this.state.currentState);});
   }
 
   onTextClick = (letter) => {
