@@ -15,7 +15,8 @@ class App extends Component {
     userGuesses: [],
     wrongGuessCnt: 0,
     currentDiagram: 0,
-    userCorrectGuesses: ''
+    userCorrectGuesses: '',
+    win:false
   };
   constructor(props) {
     super(props);
@@ -23,7 +24,13 @@ class App extends Component {
     this.baseState = JSON.parse(JSON.stringify(this.state));
   }
 
-
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.userCorrectGuesses !== this.state.userCorrectGuesses){
+      this.setState({
+        win: this.isWin()
+      });
+    }
+  }
   async getState() {
     let stateList = await fetchStates();
     let rand = Math.floor(Math.random() * stateList.length);
@@ -33,7 +40,7 @@ class App extends Component {
   }
 
   onTextClick = (letter) => {
-
+    
     if (!this.state.userGuesses.includes(letter)) {
       this.setState({ userGuesses: [...this.state.userGuesses, letter] });
     }
@@ -72,7 +79,7 @@ class App extends Component {
   render() {
     return (
       (!this.state.lose) ?
-        (this.isWin()) ?
+        (this.state.win) ?
           <div>
             <Header></Header>
             <Hangman
