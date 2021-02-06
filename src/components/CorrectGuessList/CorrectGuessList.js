@@ -35,7 +35,7 @@ const CorrectGuessList = (props) => {
         }
     });
 
-    const displayText = (!props.lose) ? 'Guess the State' : 'Correct Answer';
+    const displayText = (!props.lose) ? 'Guess the US State' : 'Correct Answer';
     return (
         <div style={divStyle}>
             <h3>{displayText}</h3>

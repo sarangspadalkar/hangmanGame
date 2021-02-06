@@ -4,11 +4,8 @@ const Header = () => {
     const style = {
         padding: '20px',
         textAlign: 'center',
-        background: 'black',
-        color: 'grey',
-        fontSize: '56px',
-        fontFamily: 'Creepster',
-        fontStyle: 'italic',
+        color: 'black',
+        fontSize: '50px',
         margin: 0
     }
     return (
