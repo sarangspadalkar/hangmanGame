@@ -5,7 +5,9 @@ const Hangman = (props) => {
         padding: '30px',
         display: 'block',
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        width: '700px',
+        height: '250px'
     };
     let imgPath = '';
     if (props.win) {
@@ -19,6 +21,7 @@ const Hangman = (props) => {
         <img style={style}
             src={imgPath} 
             alt="Hangman"
+            
         />
 
     );

@@ -18,7 +18,7 @@ const NewGameButton = (props) => {
     return (
         <div style={divStyle}>
             <button style={buttonStyle}
-            onClick={props.clicked}>New Game?</button>
+            onClick={props.clicked}>New Game</button>
         </div>
     );
     
