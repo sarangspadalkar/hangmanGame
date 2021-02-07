@@ -1,5 +1,5 @@
 # Hangman Game
-This a classic Hangman game to predict the USA state.
+This a classic Hangman game to predict the USA state. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) .
 
 Installation Steps:
 
@@ -19,4 +19,4 @@ Installation Steps:
         npm start
 
 
-The application will start on localhost at port 3000 on the default browser.
+The application will start on localhost at port 3000 on the default browser. You can also check out the porject [here](https://hangman-game-us-states.herokuapp.com/).
