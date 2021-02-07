@@ -29,7 +29,7 @@ class App extends Component {
     if (prevState.userCorrectGuesses !== this.state.userCorrectGuesses) {
       this.setState({
         win: this.isWin()
-      });
+      },()=>{console.log(this.state.win);});
     }
   }
   async getState() {
@@ -58,9 +58,8 @@ class App extends Component {
   }
 
   isWin = () => {
-    let originalState = [...new Set(this.state.currentState.split('').sort())];
+    let originalState = [...new Set(this.state.currentState.replace(/ /g, "").split('').sort())];
     let userGuessState = [...this.state.userCorrectGuesses.split('').sort()];
-
     if (originalState.length !== userGuessState.length) {
       return false;
     } else {
