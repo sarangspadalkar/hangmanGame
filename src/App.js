@@ -29,7 +29,7 @@ class App extends Component {
     if (prevState.userCorrectGuesses !== this.state.userCorrectGuesses) {
       this.setState({
         win: this.isWin()
-      },()=>{console.log(this.state.win);});
+      });
     }
   }
   async getState() {
