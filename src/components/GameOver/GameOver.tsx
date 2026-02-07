@@ -1,14 +1,26 @@
 import React from 'react';
 import styles from './GameOver.module.css';
 
-function GameOver({ win, answer, onPlayAgain }) {
+interface GameOverProps {
+  win: boolean;
+  answer: string;
+  onPlayAgain: () => void;
+}
+
+export default function GameOver({
+  win,
+  answer,
+  onPlayAgain,
+}: GameOverProps) {
   return (
     <div className={styles.overlay} role="status" aria-live="polite">
       <div className={styles.card} data-win={win}>
         <div className={styles.icon} aria-hidden>
           {win ? '🎉' : '💀'}
         </div>
-        <h2 className={styles.title}>{win ? 'You got it!' : 'Out of lives'}</h2>
+        <h2 className={styles.title}>
+          {win ? 'You got it!' : 'Out of lives'}
+        </h2>
         <p className={styles.answer}>
           {win ? (
             answer
@@ -30,5 +42,3 @@ function GameOver({ win, answer, onPlayAgain }) {
     </div>
   );
 }
-
-export default GameOver;

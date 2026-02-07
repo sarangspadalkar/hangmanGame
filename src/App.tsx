@@ -7,7 +7,7 @@ import GameOver from './components/GameOver/GameOver';
 import { useHangman } from './hooks/useHangman';
 import './App.css';
 
-function App() {
+export default function App() {
   const {
     currentState,
     userGuesses,
@@ -22,9 +22,10 @@ function App() {
 
   useEffect(() => {
     if (gameOver) return;
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       const key = e.key?.toUpperCase();
       if (
+        key &&
         key.length === 1 &&
         key >= 'A' &&
         key <= 'Z' &&
@@ -67,5 +68,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

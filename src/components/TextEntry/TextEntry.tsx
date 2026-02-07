@@ -7,12 +7,35 @@ const QWERTY_ROWS = [
   'ZXCVBNM'.split(''),
 ];
 
-function getLetterStatus(letter, guess, word) {
+type LetterStatus = 'available' | 'correct' | 'wrong';
+
+function getLetterStatus(
+  letter: string,
+  guess: string[],
+  word: string
+): LetterStatus {
   if (!guess.includes(letter)) return 'available';
   return word.includes(letter) ? 'correct' : 'wrong';
 }
 
-function TextEntry({ guess, word, onLetterClick }) {
+function getKeyClassName(status: LetterStatus): string {
+  const base = styles.key;
+  if (status === 'correct') return `${base} ${styles.keyCorrect}`;
+  if (status === 'wrong') return `${base} ${styles.keyWrong}`;
+  return base;
+}
+
+interface TextEntryProps {
+  guess: string[];
+  word: string;
+  onLetterClick: (letter: string) => void;
+}
+
+export default function TextEntry({
+  guess,
+  word,
+  onLetterClick,
+}: TextEntryProps) {
   return (
     <div className={styles.wrapper} role="group" aria-label="Choose a letter">
       {QWERTY_ROWS.map((row, rowIndex) => (
@@ -23,7 +46,7 @@ function TextEntry({ guess, word, onLetterClick }) {
               <button
                 key={letter}
                 type="button"
-                className={`${styles.key} ${styles[`key${status.charAt(0).toUpperCase() + status.slice(1)}`]}`}
+                className={getKeyClassName(status)}
                 onClick={() => onLetterClick(letter)}
                 disabled={status !== 'available'}
                 aria-label={
@@ -41,5 +64,3 @@ function TextEntry({ guess, word, onLetterClick }) {
     </div>
   );
 }
-
-export default TextEntry;

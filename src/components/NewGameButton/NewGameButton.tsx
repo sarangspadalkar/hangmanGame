@@ -1,6 +1,10 @@
 import React from 'react';
 
-function NewGameButton({ onNewGame }) {
+interface NewGameButtonProps {
+  onNewGame: () => void;
+}
+
+export default function NewGameButton({ onNewGame }: NewGameButtonProps) {
   return (
     <div className="new-game-wrapper">
       <button type="button" className="new-game-button" onClick={onNewGame}>
@@ -9,5 +13,3 @@ function NewGameButton({ onNewGame }) {
     </div>
   );
 }
-
-export default NewGameButton;
