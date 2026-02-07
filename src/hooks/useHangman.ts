@@ -1,7 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
 import fetchStates from '../fetchStates';
 
-const getInitialState = () => ({
+interface HangmanState {
+  currentState: string;
+  userGuesses: string[];
+  wrongGuessCount: number;
+  userCorrectGuesses: string;
+  lose: boolean;
+  win: boolean;
+}
+
+const getInitialState = (): HangmanState => ({
   currentState: '',
   userGuesses: [],
   wrongGuessCount: 0,
@@ -10,8 +19,11 @@ const getInitialState = () => ({
   win: false,
 });
 
-export function useHangman() {
-  const [state, setState] = useState(getInitialState);
+export function useHangman(): HangmanState & {
+  guessLetter: (letter: string) => void;
+  newGame: () => void;
+} {
+  const [state, setState] = useState<HangmanState>(getInitialState);
 
   const loadNewWord = useCallback(() => {
     const stateList = fetchStates();
@@ -23,7 +35,7 @@ export function useHangman() {
     loadNewWord();
   }, [loadNewWord]);
 
-  const isWin = useCallback((currentState, userCorrectGuesses) => {
+  const isWin = useCallback((currentState: string, userCorrectGuesses: string) => {
     const uniqueLetters = [
       ...new Set(currentState.replace(/\s/g, '').split('').sort()),
     ];
@@ -40,7 +52,7 @@ export function useHangman() {
     }));
   }, [state.userCorrectGuesses, state.currentState, state.lose, isWin]);
 
-  const guessLetter = useCallback((letter) => {
+  const guessLetter = useCallback((letter: string) => {
     setState((prev) => {
       if (prev.userGuesses.includes(letter)) return prev;
       const isWrong = !prev.currentState.includes(letter);

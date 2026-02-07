@@ -1,7 +1,19 @@
 import React from 'react';
 import styles from './CorrectGuessList.module.css';
 
-function CorrectGuessList({ currentState, guess, lose, win }) {
+interface CorrectGuessListProps {
+  currentState: string;
+  guess: string[];
+  lose: boolean;
+  win: boolean;
+}
+
+export default function CorrectGuessList({
+  currentState,
+  guess,
+  lose,
+  win,
+}: CorrectGuessListProps) {
   const showAnswer = lose || win;
 
   return (
@@ -32,5 +44,3 @@ function CorrectGuessList({ currentState, guess, lose, win }) {
     </div>
   );
 }
-
-export default CorrectGuessList;

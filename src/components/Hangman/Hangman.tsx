@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from './Hangman.module.css';
 
-function Hangman({ wrongCount, win, lose }) {
+interface HangmanProps {
+  wrongCount: number;
+  win: boolean;
+  lose: boolean;
+}
+
+export default function Hangman({ wrongCount, win, lose }: HangmanProps) {
   const lives = 6 - wrongCount;
-  const showPart = (showFrom) => wrongCount >= showFrom;
+  const showPart = (showFrom: number) => wrongCount >= showFrom;
   const isRevealed = win || lose;
 
   return (
@@ -122,5 +128,3 @@ function Hangman({ wrongCount, win, lose }) {
     </div>
   );
 }
-
-export default Hangman;
