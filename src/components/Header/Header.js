@@ -1,19 +1,15 @@
-import React from 'react'
+import React from 'react';
+import styles from './Header.module.css';
 
-const Header = () => {
-    const style = {
-        padding: '20px',
-        textAlign: 'center',
-        color: 'black',
-        fontFamily:'cursive',
-        fontSize: '50px',
-        margin: 0
-    }
-    return (
-
-        <h1 style={style}>Hangman Game </h1>
-
-    );
+function Header() {
+  return (
+    <header className={styles.header}>
+      <h1 className={styles.header__title}>Hangman</h1>
+      <p className={styles.header__subtitle}>
+        Guess the US state — one letter at a time
+      </p>
+    </header>
+  );
 }
 
 export default Header;

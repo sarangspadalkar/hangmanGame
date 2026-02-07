@@ -1,0 +1,72 @@
+.wrapper {
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.word {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15em 0.4em;
+  min-height: 2.5em;
+  align-items: flex-end;
+}
+
+.letter {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 1.1em;
+  height: 1.5em;
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  font-family: var(--font-ui);
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--color-text);
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.letter:not(.letterRevealed) {
+  border-bottom-color: var(--color-border);
+  color: transparent;
+}
+
+.letterRevealed {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+  animation: reveal 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letterRevealed {
+    animation: none;
+  }
+}
+
+@keyframes reveal {
+  from {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.space {
+  display: inline-block;
+  width: 0.6em;
+  min-width: 0.6em;
+}

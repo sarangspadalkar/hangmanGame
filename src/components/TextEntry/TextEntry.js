@@ -1,55 +1,45 @@
 import React from 'react';
+import styles from './TextEntry.module.css';
 
-const TextEntry = (props) => {
-    const alphabetStyle = {
-        cursor: 'pointer',
-        marginRight: '11px',
-        padding: '1px',
-        textTransform: 'uppercase',
-        fontSize: '22px',
-        display: 'inline-block',
-        fontFamily: 'cursive',
-        fontStyle: 'italic',
-    };
-    const disabledAlphabetStyle = {
-        cursor: 'none',
-        pointerEvents:'none',
-        marginRight: '11px',
-        padding: '1px',
-        textTransform: 'uppercase',
-        fontSize: '22px',
-        display: 'inline-block',
-        fontFamily: 'Creepster',
-        fontStyle: 'italic',
-        textDecoration: 'line-through',
-        opacity:'0.5'
-    };
-    const divStyle = {
-        margin: 'auto',
-        width: '50%',
-        border: '3px solid black',
-        padding: '10px',
-        textAlign: 'center'
-    }
-    const letters = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
-    
-    const letterList = letters.map((letter,index) => {
-        if (props.guess.includes(letter)) {
-            return <li key={index } style={disabledAlphabetStyle}
-        onClick={()=>props.clicked(letter)}>{letter}</li>
-        } else {
-            return <li key={index } style={alphabetStyle}
-        onClick={()=>props.clicked(letter)}>{letter}</li>
-        }
-    });
+const QWERTY_ROWS = [
+  'QWERTYUIOP'.split(''),
+  'ASDFGHJKL'.split(''),
+  'ZXCVBNM'.split(''),
+];
 
-    return (
-        <div style={divStyle}>
-            {letterList}
+function getLetterStatus(letter, guess, word) {
+  if (!guess.includes(letter)) return 'available';
+  return word.includes(letter) ? 'correct' : 'wrong';
+}
+
+function TextEntry({ guess, word, onLetterClick }) {
+  return (
+    <div className={styles.wrapper} role="group" aria-label="Choose a letter">
+      {QWERTY_ROWS.map((row, rowIndex) => (
+        <div key={rowIndex} className={styles.row}>
+          {row.map((letter) => {
+            const status = getLetterStatus(letter, guess, word);
+            return (
+              <button
+                key={letter}
+                type="button"
+                className={`${styles.key} ${styles[`key${status.charAt(0).toUpperCase() + status.slice(1)}`]}`}
+                onClick={() => onLetterClick(letter)}
+                disabled={status !== 'available'}
+                aria-label={
+                  status === 'available'
+                    ? `Guess ${letter}`
+                    : `${letter} already ${status}`
+                }
+              >
+                {letter}
+              </button>
+            );
+          })}
+        </div>
+      ))}
     </div>
-        
-);
-
+  );
 }
 
 export default TextEntry;

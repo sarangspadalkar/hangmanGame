@@ -1,0 +1,10 @@
+# Dependencies and build
+node_modules
+build
+
+# Lock files
+package-lock.json
+
+# Generated / cache
+coverage
+.cache

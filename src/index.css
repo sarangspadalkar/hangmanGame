@@ -1,5 +1,52 @@
+/* Hangman Game — theme and globals */
+:root {
+  /* Warm board-game palette */
+  --color-bg: #f5f1eb;
+  --color-bg-card: #fefdfb;
+  --color-surface: #ebe6de;
+  --color-text: #1c1914;
+  --color-text-muted: #5c5349;
+  --color-accent: #2d5a27;
+  --color-accent-hover: #3d7a35;
+  --color-wrong: #a63d40;
+  --color-wrong-soft: #e8d4d5;
+  --color-correct: #2d5a27;
+  --color-correct-soft: #d8e6d6;
+  --color-wood: #6b5b4f;
+  --color-wood-light: #9c8b7a;
+  --color-border: #d4cdc4;
+  --shadow-sm: 0 1px 3px rgba(28, 25, 20, 0.08);
+  --shadow-md: 0 4px 12px rgba(28, 25, 20, 0.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-ui: 'Outfit', system-ui, sans-serif;
+  --transition: 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0s;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
 }

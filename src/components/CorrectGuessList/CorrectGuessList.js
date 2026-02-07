@@ -1,48 +1,36 @@
 import React from 'react';
+import styles from './CorrectGuessList.module.css';
 
-const CorrectGuessList = (props) => {
-    const alphabetStyle = {
-        marginRight: '11px',
-        padding: '1px',
-        textTransform: 'uppercase',
-        fontSize: '22px',
-        display: 'inline-block',
-        fontFamily:'cursive',
-        fontStyle: 'italic',
-    };
-    const divStyle = {
-        margin: 'auto',
-        width: '50%',
-        padding: '10px',
-        textAlign: 'center'
-    }
-    const stateletters = props.currentState.split('');
-    
-    const stateletterList = stateletters.map((letter,index) => {
-        if (props.lose|| props.win) {
-            return <li key={index} style={alphabetStyle}><u>{letter}</u></li>
-        } else {
-            if (letter === ' ') {
-                return <li key={index} style={alphabetStyle}>&nbsp;&nbsp;</li>
-            } else {
-                if (props.guess.includes(letter)) {
-                    return <li key={index} style={alphabetStyle}><u>{letter}</u></li>
-                }
-                else {
-                    return <li key={index} style={alphabetStyle}><u>&nbsp;&nbsp;&nbsp;</u></li>
-                }
-            }
-        }
-    });
+function CorrectGuessList({ currentState, guess, lose, win }) {
+  const showAnswer = lose || win;
 
-    const displayText = (!props.lose && !props.win) ? 'Guess the US State' : 'Correct Answer';
-    return (
-        <div style={divStyle}>
-            <h3 style={{fontFamily:'cursive'}}>{displayText}</h3>
-            {stateletterList}
+  return (
+    <div className={styles.wrapper}>
+      <p className={styles.label}>
+        {showAnswer ? (win ? 'Correct!' : 'The answer') : 'Guess the state'}
+      </p>
+      <div
+        className={styles.word}
+        role="text"
+        aria-label={currentState || 'Loading…'}
+      >
+        {currentState.split('').map((char, index) => {
+          if (char === ' ') {
+            return <span key={`${index}-space`} className={styles.space} />;
+          }
+          const revealed = showAnswer || guess.includes(char);
+          return (
+            <span
+              key={`${index}-${char}`}
+              className={`${styles.letter} ${revealed ? styles.letterRevealed : ''}`}
+            >
+              {revealed ? char : ''}
+            </span>
+          );
+        })}
+      </div>
     </div>
-);
-
+  );
 }
 
 export default CorrectGuessList;

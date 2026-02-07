@@ -1,0 +1,33 @@
+.app {
+  min-height: 100vh;
+  padding: clamp(1rem, 4vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__inner {
+  width: 100%;
+  max-width: 32rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.app__card {
+  width: 100%;
+  background: var(--color-bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--color-border);
+}
+
+.app__game-section {
+  margin-top: 1.5rem;
+}
+
+.app__game-section:first-child {
+  margin-top: 0;
+}

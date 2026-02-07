@@ -1,22 +1,43 @@
 # Hangman Game
-This a classic Hangman game to predict the USA state. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) .
 
-Installation Steps:
+A classic Hangman game where you guess US state names. Built with React.
 
-1. Install Node:
-    
-    Download and install Node.js from the website: 
-   
-        https://nodejs.org/en/download/
+## Installation
 
-2. Clone this repository
-3. Browse to the folder and install the required node packages using below command:
+1. Install [Node.js](https://nodejs.org/) (LTS recommended).
+2. Clone this repository and go to the project folder:
+   ```bash
+   git clone https://github.com/sarangspadalkar/hangmanGame.git
+   cd hangmanGame
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the dev server:
+   ```bash
+   npm start
+   ```
+   The app will open at [http://localhost:3000](http://localhost:3000).
 
-        npm install
+## Deploy to GitHub Pages
 
-4.  Run the project using below command:
+The project is set up to deploy to **https://sarangspadalkar.github.io/hangmanGame**.
 
-        npm start
+1. Ensure the repo is on GitHub under your account (e.g. `sarangspadalkar/hangmanGame`).
+2. Run:
 
+   ```bash
+   npm run deploy
+   ```
 
-The application will start on localhost at port 3000 on the default browser. You can also check out the porject [here](https://hangman-game-us-states.herokuapp.com/).
+   This builds the app and pushes the `build` folder to the `gh-pages` branch. GitHub Pages will serve the site from that branch.
+
+3. In GitHub: **Settings → Pages** → set **Source** to “Deploy from a branch”, branch **gh-pages**, folder **/ (root)**. Save. The site will be available at the URL above after a short delay.
+
+## Scripts
+
+- `npm start` – run development server
+- `npm run build` – production build
+- `npm test` – run tests
+- `npm run deploy` – build and deploy to GitHub Pages
