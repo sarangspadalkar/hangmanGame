@@ -2,7 +2,7 @@
   "name": "hangman-game",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://sarangspadalkar.github.io/hangmanGame",
+  "homepage": "https://sarangspadalkar.github.io/hangman-game",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
